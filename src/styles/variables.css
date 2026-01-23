@@ -1,0 +1,37 @@
+:root {
+  /* Colors */
+  --color-primary: #D4AF37; /* Gold/Bronze */
+  --color-secondary: #f4f1ea; /* Cream/Off-White */
+  --color-text: #1a1a1a;
+  --color-text-light: #666666;
+  --color-bg: #ffffff;
+  --color-accent: #e5dada;
+
+  /* Fonts */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Lato', sans-serif;
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 8rem;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.4s ease;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.2;
+}
