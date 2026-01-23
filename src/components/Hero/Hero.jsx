@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import './Hero.css';
 
+import heroImage from '../../assets/images/HeroPageAsset1.png';
+
 const Hero = () => {
     const fadeInUp = {
         hidden: { opacity: 0, y: 20 },
@@ -10,29 +12,28 @@ const Hero = () => {
     };
 
     const categories = [
-        { title: 'New In', desc: 'Shop the latest pieces from our collection', link: '#' },
-        { title: 'Earrings', desc: 'Lightweight & comfortable for everyday', link: '#' },
-        { title: 'Rings', desc: 'Explore our ring sets to stack & style', link: '#' },
-        { title: 'Necklaces', desc: 'Layout chains perfectly designed', link: '#' },
-        { title: 'Bracelets', desc: 'A perfect finish to your look', link: '#' },
-        { title: 'Gifts (New)', desc: 'Curated sets packaged for gifting', link: '#' },
+        { title: 'New In', desc: 'Fresh trends and exclusive designs you\'ll fall in love with', link: '#' },
+        { title: 'Earrings', desc: 'Elegant accents to add sparkle to any look', link: '#' },
+        { title: 'Rings', desc: 'Unique pieces for special moments and everyday wear', link: '#' },
+        { title: 'Necklaces', desc: 'Delicate chains and statement pendants for a refined style', link: '#' },
+        { title: 'Bracelets', desc: 'Light and stylish details to complete your outfit', link: '#' },
+        { title: 'Collections', desc: 'Curated designs inspired by nature and modern aesthetics', link: '#' },
     ];
 
     return (
         <section className="hero">
             <div className="hero-background">
-                {/* Placeholder for Hero Image */}
-                <div className="hero-image-placeholder"></div>
+                <img src={heroImage} alt="Hero Background" className="hero-image" />
             </div>
 
             <div className="hero-content">
                 <motion.h1
-                    className="hero-title"
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    className="hero-brand-title"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
                 >
-                    amoteir
+                    Aliska Stones
                 </motion.h1>
 
                 <motion.div
@@ -43,15 +44,8 @@ const Hero = () => {
                         visible: { transition: { staggerChildren: 0.1 } }
                     }}
                 >
-                    {categories.slice(0, 3).map((cat, index) => (
+                    {categories.map((cat, index) => (
                         <motion.div key={index} className="hero-category-item" variants={fadeInUp}>
-                            <h3>{cat.title}</h3>
-                            <p>{cat.desc}</p>
-                        </motion.div>
-                    ))}
-                    {/* Second row/column logic can be added or adjusted via CSS grid */}
-                    {categories.slice(3, 6).map((cat, index) => (
-                        <motion.div key={index + 3} className="hero-category-item" variants={fadeInUp}>
                             <h3>{cat.title}</h3>
                             <p>{cat.desc}</p>
                         </motion.div>

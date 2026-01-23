@@ -20,26 +20,16 @@ const Navbar = () => {
             <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
                 <div className="navbar-container">
                     <div className="navbar-left">
-                        <button className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(true)}>
+                        <button className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(true)} style={{ display: 'block', color: 'inherit' }}>
                             <Menu size={24} />
                         </button>
-                        <div className="desktop-links">
-                            <a href="#">New In</a>
-                            <a href="#">Earrings</a>
-                            <a href="#">Rings</a>
-                            <a href="#">Necklace</a>
-                        </div>
                     </div>
 
                     <div className="navbar-center">
-                        <a href="/" className="brand-logo">amoteir</a>
+                        {/* Logo hidden to avoid duplication with hero image */}
                     </div>
 
                     <div className="navbar-right">
-                        <div className="desktop-links">
-                            <a href="#">Bracelet</a>
-                            <a href="#">Gifts (New)</a>
-                        </div>
                         <div className="nav-icons">
                             <button><Search size={20} /></button>
                             <button><User size={20} /></button>

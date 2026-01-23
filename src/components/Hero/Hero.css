@@ -4,25 +4,25 @@
     width: 100%;
     overflow: hidden;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    /* Align content to bottom */
     background-color: #d8cfc4;
-    /* Fallback color matching the image tone */
 }
 
 .hero-background {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 10;
     width: 100%;
     height: 100%;
     z-index: 0;
 }
 
-.hero-image-placeholder {
+.hero-image {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #e3dfd9 0%, #d8cfc4 100%);
-    /* In real implementation, this would be an <img> or background-image */
+    object-fit: cover;
+    display: block;
 }
 
 .hero-content {
@@ -30,71 +30,92 @@
     z-index: 1;
     max-width: 1400px;
     width: 100%;
-    margin: 0 auto;
-    padding: 0 2rem;
     height: 100%;
+    margin: 0 auto;
+    padding: 0 4rem 6rem;
+    /* Adjust padding to position grid */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
+    /* Push content to bottom */
 }
 
-.hero-title {
-    font-family: var(--font-heading);
-    font-size: 15vw;
-    /* Huge responsive text */
-    line-height: 0.8;
-    color: #fff;
-    text-align: center;
-    margin-bottom: 2rem;
-    mix-blend-mode: overlay;
-    /* Creates that subtle blend effect */
-    pointer-events: none;
+.hero-brand-title {
+    font-family: 'Shanoy', serif;
+    font-size: clamp(3rem, 9vw, 10rem);
+    color: #ffffff;
+    text-align: left;
+    position: absolute;
+    left: 5%;
+    top: 25%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.15);
+    font-weight: 400;
+    line-height: 1;
 }
 
+/* Categories Grid */
 .hero-categories {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: auto;
-    margin-bottom: 4rem;
-    color: white;
-    /* Or dark depending on image contrast */
+    grid-template-rows: repeat(2, auto);
+    column-gap: 2rem;
+    row-gap: 3rem;
+    max-width: 800px;
+    /* Restrict width so it doesn't overlap model */
 }
 
 .hero-category-item {
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
-    padding-top: 1rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.6);
+    /* Vertical line on left */
+    padding-left: 1.5rem;
+    color: #fff;
+    /* White text */
+    text-align: left;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: opacity 0.3s ease;
 }
 
 .hero-category-item:hover {
-    transform: translateY(-5px);
+    opacity: 0.8;
 }
 
 .hero-category-item h3 {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    font-weight: 400;
     font-style: italic;
-    color: #1a1a1a;
+    color: #fff;
+    letter-spacing: 0.5px;
 }
 
 .hero-category-item p {
-    font-size: 0.9rem;
-    color: #444;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 220px;
 }
 
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
-    .hero-categories {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        overflow-y: auto;
-        max-height: 40vh;
+    .hero-content {
+        padding: 2rem;
+        justify-content: flex-end;
     }
 
-    .hero-title {
-        font-size: 20vw;
-        margin-top: 4rem;
+    .hero-categories {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        row-gap: 2rem;
+        margin-bottom: 4rem;
+        /* Space for bottom interaction */
+    }
+
+    .hero-category-item {
+        border-left: 1px solid rgba(255, 255, 255, 0.4);
     }
 }
