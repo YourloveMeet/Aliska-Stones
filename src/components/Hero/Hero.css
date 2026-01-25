@@ -173,6 +173,7 @@
 
     /* FIX: Override desktop frame styles for full mobile bleed */
     .hero-background {
+
         top: 0;
         left: 0;
         right: 0;
