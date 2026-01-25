@@ -26,8 +26,7 @@ const NaturalGems = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                        Natural Gems is a collection of precious gemstones that fit beautifully in any setting. The color and cuts will mesmerize you and bring out your natural glow.
-                    </motion.p>
+                        The Natural Gems collection draws inspiration from the raw elegance of the earth. Carefully selected gemstones reveal their true character through rich tones, subtle variations, and refined cuts. Each design celebrates individuality and organic beauty, offering pieces that feel both grounding and radiant — jewelry that enhances your presence without overpowering it.                    </motion.p>
                 </div>
             </div>
         </section>

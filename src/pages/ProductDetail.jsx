@@ -5,12 +5,14 @@ import { ChevronLeft, Heart, Share2, Minus, Plus, Check } from 'lucide-react';
 import MainLayout from '../layouts/MainLayout';
 import { PRODUCTS } from '../data/products';
 import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
 import './ProductDetail.css';
 
 const ProductDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { addToCart } = useCart();
+    const { isInWishlist, toggleWishlist } = useWishlist();
     const [quantity, setQuantity] = useState(1);
     const [isAdded, setIsAdded] = useState(false);
 
@@ -27,10 +29,29 @@ const ProductDetail = () => {
         );
     }
 
+    const isWishlisted = isInWishlist(product.id);
+
     const handleAddToCart = () => {
         addToCart(product, quantity);
         setIsAdded(true);
         setTimeout(() => setIsAdded(false), 2000);
+    };
+
+    const handleWishlist = () => {
+        toggleWishlist(product);
+    };
+
+    const handleShare = () => {
+        if (navigator.share) {
+            navigator.share({
+                title: product.name,
+                text: `Check out ${product.name} on Aliska Stones`,
+                url: window.location.href,
+            });
+        } else {
+            alert('Link copied to clipboard!');
+            navigator.clipboard.writeText(window.location.href);
+        }
     };
 
     const relatedProducts = PRODUCTS.filter(p => p.id !== product.id && p.category === product.category).slice(0, 4);
@@ -116,11 +137,14 @@ const ProductDetail = () => {
                         </div>
 
                         <div className="product-secondary-actions">
-                            <button className="wishlist-btn">
-                                <Heart size={18} />
-                                <span>Add to Wishlist</span>
+                            <button
+                                className={`wishlist-btn ${isWishlisted ? 'active' : ''}`}
+                                onClick={handleWishlist}
+                            >
+                                <Heart size={18} fill={isWishlisted ? "currentColor" : "none"} />
+                                <span>{isWishlisted ? 'Saved to Wishlist' : 'Add to Wishlist'}</span>
                             </button>
-                            <button className="share-btn">
+                            <button className="share-btn" onClick={handleShare}>
                                 <Share2 size={18} />
                                 <span>Share</span>
                             </button>

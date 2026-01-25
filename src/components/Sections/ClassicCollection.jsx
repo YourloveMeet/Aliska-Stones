@@ -23,8 +23,7 @@ const ClassicCollection = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                        Classic Collection is a harmonious fusion of ancient artistry and subtle elegance. Shapes that flow with simplicity and possess a sense of effortless dispersion.
-                    </motion.p>
+                        Rooted in timeless design, the Classic Collection reflects a quiet confidence and enduring beauty. Each piece is shaped by refined craftsmanship, where smooth contours and balanced forms create an effortless sense of harmony. Designed to transcend trends, this collection brings understated luxury to everyday moments, making elegance feel natural, not forced.                    </motion.p>
                 </div>
                 <div className="classic-image-container">
                     <img src={classicImage} alt="Classic Collection" className="section-image" />

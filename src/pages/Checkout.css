@@ -265,14 +265,15 @@
     width: 60px;
     height: 60px;
     background: var(--color-bg-cream);
-    overflow: hidden;
     flex-shrink: 0;
+    border-radius: var(--radius-sm);
 }
 
 .summary-item-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: var(--radius-sm);
 }
 
 .qty-badge {

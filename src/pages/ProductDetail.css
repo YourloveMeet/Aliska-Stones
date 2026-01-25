@@ -210,12 +210,27 @@
     cursor: pointer;
     font-size: var(--text-sm);
     color: var(--color-text-light);
-    transition: color var(--transition-fast);
+    transition: all var(--transition-fast);
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    border: 1px solid transparent;
 }
 
 .wishlist-btn:hover,
 .share-btn:hover {
     color: var(--color-primary);
+    background: var(--color-bg-cream);
+}
+
+.wishlist-btn.active,
+.share-btn.active {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+}
+
+.wishlist-btn.active svg {
+    fill: currentColor;
 }
 
 .product-guarantee {

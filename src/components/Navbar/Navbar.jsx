@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, ShoppingBag, User, Menu, X } from 'lucide-react';
+import { Search, ShoppingBag, User, Menu, X, Heart } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../../context/CartContext';
+import { useWishlist } from '../../context/WishlistContext';
+import SearchOverlay from '../Search/SearchOverlay';
 import './Navbar.css';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
     const { cartCount, openCart } = useCart();
+    const { wishlistItems } = useWishlist();
     const location = useLocation();
 
     useEffect(() => {
@@ -22,6 +26,7 @@ const Navbar = () => {
     // Close mobile menu on route change
     useEffect(() => {
         setIsMobileMenuOpen(false);
+        setIsSearchOpen(false);
     }, [location]);
 
     const navLinks = [
@@ -58,15 +63,33 @@ const Navbar = () => {
 
                     <div className="navbar-center">
                         <Link to="/" className="logo">
-                            <span className="logo-text">Aliska Stones</span>
+                            <span className="logo-text">ALISKA STONES</span>
                         </Link>
                     </div>
 
                     <div className="navbar-right">
                         <div className="nav-icons">
-                            <button aria-label="Search">
+                            <button
+                                aria-label="Search"
+                                onClick={() => setIsSearchOpen(true)}
+                            >
                                 <Search size={20} />
                             </button>
+                            <Link to="/wishlist" className="icon-link" aria-label="Wishlist">
+                                <div style={{ position: 'relative', display: 'flex' }}>
+                                    <Heart size={20} />
+                                    {wishlistItems.length > 0 && (
+                                        <motion.span
+                                            className="cart-count"
+                                            initial={{ scale: 0 }}
+                                            animate={{ scale: 1 }}
+                                            key={wishlistItems.length}
+                                        >
+                                            {wishlistItems.length}
+                                        </motion.span>
+                                    )}
+                                </div>
+                            </Link>
                             <Link to="/cart" className="icon-link" aria-label="Account">
                                 <User size={20} />
                             </Link>
@@ -91,6 +114,11 @@ const Navbar = () => {
                     </div>
                 </div>
             </nav>
+
+            <SearchOverlay
+                isOpen={isSearchOpen}
+                onClose={() => setIsSearchOpen(false)}
+            />
 
             {/* Mobile Menu */}
             <AnimatePresence>
@@ -121,6 +149,7 @@ const Navbar = () => {
                                 <Link to="/shop">Shop All</Link>
                                 <Link to="/about">About Us</Link>
                                 <Link to="/contact">Contact</Link>
+                                <Link to="/wishlist">Wishlist ({wishlistItems.length})</Link>
                             </div>
                             <div className="mobile-categories">
                                 <h4>Categories</h4>

@@ -22,8 +22,18 @@ const Checkout = () => {
         phone: ''
     });
 
-    const shipping = cartTotal >= 100 ? 0 : 5;
-    const total = cartTotal + shipping;
+    const [shippingMethod, setShippingMethod] = useState('standard');
+
+    // Calculate shipping cost
+    let shippingCost = 0;
+    if (shippingMethod === 'express') {
+        shippingCost = 12;
+    } else {
+        // Standard is free over £100, otherwise £5
+        shippingCost = cartTotal >= 100 ? 0 : 5;
+    }
+
+    const total = cartTotal + shippingCost;
 
     const handleInputChange = (e) => {
         setFormData({
@@ -196,8 +206,13 @@ const Checkout = () => {
                                 >
                                     <h2>Shipping Method</h2>
                                     <div className="shipping-options">
-                                        <label className="shipping-option selected">
-                                            <input type="radio" name="shipping" defaultChecked />
+                                        <label className={`shipping-option ${shippingMethod === 'standard' ? 'selected' : ''}`}>
+                                            <input
+                                                type="radio"
+                                                name="shipping"
+                                                checked={shippingMethod === 'standard'}
+                                                onChange={() => setShippingMethod('standard')}
+                                            />
                                             <div className="option-content">
                                                 <div>
                                                     <strong>Standard Delivery</strong>
@@ -206,8 +221,13 @@ const Checkout = () => {
                                                 <span>{cartTotal >= 100 ? 'Free' : '£5.00'}</span>
                                             </div>
                                         </label>
-                                        <label className="shipping-option">
-                                            <input type="radio" name="shipping" />
+                                        <label className={`shipping-option ${shippingMethod === 'express' ? 'selected' : ''}`}>
+                                            <input
+                                                type="radio"
+                                                name="shipping"
+                                                checked={shippingMethod === 'express'}
+                                                onChange={() => setShippingMethod('express')}
+                                            />
                                             <div className="option-content">
                                                 <div>
                                                     <strong>Express Delivery</strong>
@@ -291,7 +311,7 @@ const Checkout = () => {
                             </div>
                             <div className="summary-row">
                                 <span>Shipping</span>
-                                <span>{shipping === 0 ? 'Free' : `£${shipping.toFixed(2)}`}</span>
+                                <span>{shippingCost === 0 ? 'Free' : `£${shippingCost.toFixed(2)}`}</span>
                             </div>
                             <div className="summary-row total">
                                 <span>Total</span>

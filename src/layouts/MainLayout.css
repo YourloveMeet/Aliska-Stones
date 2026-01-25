@@ -1,0 +1,26 @@
+.main-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    /* Add padding to account for fixed navbar on non-home pages */
+    padding-top: 100px;
+}
+
+.main-content.no-padding {
+    padding-top: 0;
+}
+
+/* Adjust for mobile if needed */
+@media (max-width: 480px) {
+    .main-content {
+        padding-top: 80px;
+    }
+
+    .main-content.no-padding {
+        padding-top: 0;
+    }
+}

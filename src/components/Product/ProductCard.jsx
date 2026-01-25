@@ -30,7 +30,7 @@ const ProductCard = ({ product }) => {
                 </div>
             </Link>
             <button
-                className="add-to-cart-btn"
+                className="card-add-btn"
                 aria-label="Add to cart"
                 onClick={(e) => {
                     e.preventDefault();
