@@ -133,6 +133,7 @@ const Shop = () => {
 
                 {/* Product Grid */}
                 <motion.div
+                    key={`${activeCategory}-${activeCollection}-${sortBy}`}
                     className="shop-grid"
                     variants={containerVariants}
                     initial="hidden"
