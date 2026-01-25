@@ -11,6 +11,9 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  /* Strict overflow control */
+  width: 100%;
 }
 
 body {
@@ -22,6 +25,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 
 /* Selection Styling */

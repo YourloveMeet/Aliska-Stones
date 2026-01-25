@@ -292,7 +292,8 @@
 
 @media (max-width: 480px) {
     .navbar {
-        padding: 12px 16px;
+        padding: 16px 16px;
+        /* Increased from 12px to 16px */
     }
 
     /* Stacked logo for mobile key match */

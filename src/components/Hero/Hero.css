@@ -171,6 +171,15 @@
         object-position: center 20%;
     }
 
+    /* FIX: Override desktop frame styles for full mobile bleed */
+    .hero-background {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 0;
+    }
+
     .hero-content {
         padding: 0;
         justify-content: flex-end;
@@ -187,12 +196,16 @@
     .hero-mobile-layout {
         display: flex;
         flex-direction: column;
-        width: 100%;
+        width: auto;
         padding: 20px;
         gap: 16px;
         position: relative;
         z-index: 10;
         padding-bottom: 30px;
+        padding-top: 80px;
+        /* Add top padding to clear navbar */
+        box-sizing: border-box;
+        overflow-x: hidden;
     }
 
     /* Mobile Title Stacked */
@@ -203,14 +216,16 @@
         /* Left align like reference */
         margin-bottom: auto;
         /* Push to top if needed */
-        margin-top: 50%;
-        /* Position relative to face */
+        margin-top: 35%;
+        /* Reduced from 50% to fit better */
         padding-left: 10px;
+        width: 100%;
     }
 
     .mobile-title span {
         font-family: 'Shanoy', serif;
-        font-size: 4.5rem;
+        font-size: 4rem;
+        /* Reduced from 4.5rem to prevent cutoff */
         line-height: 0.85;
         color: white;
         text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
