@@ -22,7 +22,7 @@ const Hero = () => {
     // Large cards for mobile
     const featureCards = [
         {
-            title: 'Necklaces',
+            title: 'lalal',
             icon: <Gem size={20} />,
             desc: 'Delicate chains and statement pendants for a refined style',
             link: '#'
