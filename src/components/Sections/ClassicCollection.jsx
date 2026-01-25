@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import './Sections.css';
 
+import classicImage from '../../assets/images/Products/Classic Collection.png';
+
 const ClassicCollection = () => {
     return (
         <section className="classic-collection">
@@ -25,8 +27,7 @@ const ClassicCollection = () => {
                     </motion.p>
                 </div>
                 <div className="classic-image-container">
-                    {/* Placeholder for classic collection image */}
-                    <div className="classic-placeholder"></div>
+                    <img src={classicImage} alt="Classic Collection" className="section-image" />
                 </div>
             </div>
         </section>

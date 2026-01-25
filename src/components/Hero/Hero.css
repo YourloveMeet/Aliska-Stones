@@ -4,75 +4,86 @@
     width: 100%;
     overflow: hidden;
     display: flex;
-    align-items: flex-end;
-    /* Align content to bottom */
-    background-color: #d8cfc4;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    /* White outer background for border effect */
+    padding: 3.5rem;
+    /* Increased for thicker white border matching reference */
 }
 
 .hero-background {
     position: absolute;
-    top: 0;
-    left: 10;
-    width: 100%;
-    height: 100%;
+    top: 3.8rem;
+    /* Match padding */
+    left: 2rem;
+    right: 2rem;
+    bottom: 1rem;
     z-index: 0;
+    overflow: hidden;
+    border-radius: 0;
+    /* Sharp corners like reference */
 }
 
 .hero-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    display: block;
+    object-fit: contain;
+    object-position: right center;
+    background-color: #bbb6aa;
+    /* match image bg */
 }
 
 .hero-content {
-    position: relative;
+    position: absolute;
+    top: 3.5rem;
+    left: 3.5rem;
+    right: 3.5rem;
+    bottom: 3.5rem;
     z-index: 1;
-    max-width: 1400px;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    padding: 0 4rem 6rem;
-    /* Adjust padding to position grid */
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    /* Push content to bottom */
+    padding: 3rem;
 }
 
 .hero-brand-title {
     font-family: 'Shanoy', serif;
-    font-size: clamp(3rem, 9vw, 10rem);
+    font-size: clamp(3rem, 15vw, 39rem);
+    /* Further reduced to fit "Aliska Stones" */
     color: #ffffff;
-    text-align: left;
+    text-align: center;
     position: absolute;
-    left: 5%;
-    top: 25%;
-    transform: translateY(-50%);
+    top: 10%;
+    left: 3%;
+    transform: translate(-50%, -50%);
     white-space: nowrap;
-    letter-spacing: 0.02em;
-    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.15);
-    font-weight: 400;
+    letter-spacing: -0.02em;
+    z-index: 1;
+    font-weight: 500;
     line-height: 1;
+    pointer-events: none;
+    width: auto;
+    /* Allow natural width */
 }
 
-/* Categories Grid */
+/* Categories Grid positioned at bottom left */
 .hero-categories {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, auto);
-    column-gap: 2rem;
-    row-gap: 3rem;
-    max-width: 800px;
-    /* Restrict width so it doesn't overlap model */
+    column-gap: 3rem;
+    row-gap: 2.5rem;
+    max-width: 900px;
+    /* Control maximum width */
+    z-index: 2;
+    align-self: flex-start;
+    /* Align to left */
 }
 
 .hero-category-item {
-    border-left: 1px solid rgba(255, 255, 255, 0.6);
-    /* Vertical line on left */
-    padding-left: 1.5rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    padding-left: 1rem;
     color: #fff;
-    /* White text */
     text-align: left;
     cursor: pointer;
     transition: opacity 0.3s ease;
@@ -84,38 +95,82 @@
 
 .hero-category-item h3 {
     font-family: var(--font-heading);
-    font-size: 1.4rem;
-    margin-bottom: 0.8rem;
+    font-size: 1.6rem;
+    margin-bottom: 0.4rem;
     font-weight: 400;
     font-style: italic;
     color: #fff;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.03em;
 }
 
 .hero-category-item p {
     font-family: var(--font-body);
-    font-size: 0.85rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.9);
-    max-width: 220px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 200px;
 }
 
 /* Mobile Responsiveness */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+    .hero {
+        padding: 1.5rem;
+    }
+
+    .hero-background,
+    .hero-content {
+        top: 1.5rem;
+        left: 1.5rem;
+        right: 1.5rem;
+        bottom: 1.5rem;
+    }
+
     .hero-content {
         padding: 2rem;
-        justify-content: flex-end;
+    }
+
+    .hero-categories {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 600px;
+    }
+
+    .hero-brand-title {
+        font-size: 10rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 1rem;
+    }
+
+    .hero-background,
+    .hero-content {
+        top: 1rem;
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+    }
+
+    .hero-content {
+        padding: 1.5rem;
+    }
+
+    .hero-brand-title {
+        font-size: 4rem;
     }
 
     .hero-categories {
         grid-template-columns: 1fr;
         max-width: 100%;
-        row-gap: 2rem;
-        margin-bottom: 4rem;
-        /* Space for bottom interaction */
+        row-gap: 1.5rem;
     }
 
-    .hero-category-item {
-        border-left: 1px solid rgba(255, 255, 255, 0.4);
+    .hero-category-item h3 {
+        font-size: 1rem;
+    }
+
+    .hero-category-item p {
+        font-size: 0.7rem;
     }
 }

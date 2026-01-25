@@ -2,13 +2,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import './Sections.css';
 
+import naturalImage from '../../assets/images/Products/Natural Gems.png';
+
 const NaturalGems = () => {
     return (
         <section className="natural-gems">
             <div className="section-container reverse">
                 <div className="natural-image-container">
-                    {/* Placeholder for natural gems image */}
-                    <div className="natural-placeholder"></div>
+                    <img src={naturalImage} alt="Natural Gems" className="section-image" />
                 </div>
                 <div className="natural-content">
                     <motion.h2
