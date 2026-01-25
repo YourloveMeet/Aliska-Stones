@@ -355,3 +355,40 @@
         gap: var(--spacing-sm);
     }
 }
+
+@media (max-width: 480px) {
+    .product-detail-page {
+        padding: var(--spacing-sm);
+    }
+
+    .product-info-section h1 {
+        font-size: var(--text-xl);
+    }
+
+    .product-price-large {
+        font-size: var(--text-lg);
+    }
+
+    .add-to-cart-btn {
+        padding: 14px 24px;
+        font-size: var(--text-xs);
+    }
+
+    .quantity-selector button {
+        padding: 12px;
+    }
+
+    .wishlist-btn,
+    .share-btn {
+        padding: 10px 12px;
+        font-size: var(--text-xs);
+    }
+
+    .product-guarantee {
+        padding: var(--spacing-sm);
+    }
+
+    .related-products h2 {
+        font-size: var(--text-xl);
+    }
+}

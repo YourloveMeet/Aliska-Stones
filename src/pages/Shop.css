@@ -308,8 +308,16 @@
         font-size: var(--text-4xl);
     }
 
+    .shop-controls {
+        flex-wrap: wrap;
+    }
+
     .category-pills {
-        display: none;
+        order: 3;
+        width: 100%;
+        justify-content: flex-start;
+        padding: var(--spacing-sm) 0;
+        -webkit-overflow-scrolling: touch;
     }
 }
 
@@ -320,27 +328,58 @@
     }
 
     .shop-hero {
-        height: 30vh;
-        min-height: 200px;
+        height: 25vh;
+        min-height: 180px;
     }
 
     .shop-hero h1 {
-        font-size: var(--text-3xl);
+        font-size: var(--text-2xl);
+    }
+
+    .shop-hero p {
+        font-size: var(--text-sm);
+        padding: 0 var(--spacing-sm);
     }
 
     .shop-controls {
-        justify-content: center;
+        padding: var(--spacing-xs) var(--spacing-sm);
     }
 
-    .sort-dropdown {
-        width: 100%;
-        justify-content: center;
+    .filter-toggle {
+        padding: 8px 12px;
+        font-size: var(--text-xs);
+    }
+
+    .category-pills {
+        gap: 6px;
+    }
+
+    .category-pill {
+        padding: 6px 14px;
+        font-size: var(--text-xs);
+    }
+
+    .sort-dropdown select {
+        font-size: var(--text-xs);
+        padding: 8px 28px 8px 12px;
     }
 
     .quick-add-btn {
         opacity: 1;
         transform: translateY(0);
-        width: 36px;
-        height: 36px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .product-info h3 {
+        font-size: var(--text-sm);
+    }
+
+    .product-collection {
+        font-size: 0.65rem;
+    }
+
+    .product-price {
+        font-size: var(--text-sm);
     }
 }

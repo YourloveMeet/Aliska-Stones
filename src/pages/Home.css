@@ -164,3 +164,32 @@
         justify-content: flex-start;
     }
 }
+
+@media (max-width: 480px) {
+    .product-grid {
+        gap: 8px;
+    }
+
+    .section-header h2 {
+        font-size: var(--text-xl);
+    }
+
+    .filter-btn {
+        padding: 6px 14px;
+        font-size: var(--text-xs);
+    }
+
+    .cta-btn {
+        padding: 14px 32px;
+        font-size: var(--text-xs);
+    }
+
+    .seo-content h2 {
+        font-size: var(--text-lg);
+    }
+
+    .seo-content p {
+        font-size: var(--text-sm);
+        line-height: 1.6;
+    }
+}
