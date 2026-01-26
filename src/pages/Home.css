@@ -51,6 +51,15 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     padding-bottom: var(--spacing-sm);
     overflow-x: auto;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+}
+
+.filter-bar::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
 }
 
 .filters {
@@ -157,7 +166,7 @@
     }
 
     .section-header h2 {
-        font-size: var(--text-2xl);
+        font-size: var(--text-3xl);
     }
 
     .filter-bar {
@@ -171,7 +180,7 @@
     }
 
     .section-header h2 {
-        font-size: var(--text-xl);
+        font-size: var(--text-2xl);
     }
 
     .filter-btn {

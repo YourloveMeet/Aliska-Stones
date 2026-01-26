@@ -37,7 +37,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+            <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${location.pathname !== '/' ? 'dark-nav' : ''}`}>
                 <div className="navbar-container">
                     <div className="navbar-left">
                         <button

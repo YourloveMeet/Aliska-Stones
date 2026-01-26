@@ -276,18 +276,41 @@
     }
 
     /* White navbar over hero on mobile */
-    .navbar:not(.scrolled) .logo-text,
-    .navbar:not(.scrolled) .mobile-menu-btn,
-    .navbar:not(.scrolled) .nav-icons button,
-    .navbar:not(.scrolled) .nav-icons a,
-    .navbar:not(.scrolled) .icon-link {
+    .navbar:not(.scrolled):not(.dark-nav) .logo-text,
+    .navbar:not(.scrolled):not(.dark-nav) .mobile-menu-btn,
+    .navbar:not(.scrolled):not(.dark-nav) .nav-icons button,
+    .navbar:not(.scrolled):not(.dark-nav) .nav-icons a,
+    .navbar:not(.scrolled):not(.dark-nav) .icon-link {
         color: white;
     }
 
-    .navbar:not(.scrolled) .cart-count {
+    .navbar:not(.scrolled):not(.dark-nav) .cart-count {
         background: white;
         color: var(--color-text);
     }
+}
+
+/* Dark Nav (Non-Home Pages) */
+.navbar.dark-nav:not(.scrolled) {
+    background: transparent;
+}
+
+.navbar.dark-nav:not(.scrolled) .logo-text,
+.navbar.dark-nav:not(.scrolled) .mobile-menu-btn,
+.navbar.dark-nav:not(.scrolled) .nav-icons button,
+.navbar.dark-nav:not(.scrolled) .nav-icons a,
+.navbar.dark-nav:not(.scrolled) .icon-link,
+.navbar.dark-nav:not(.scrolled) .nav-links a {
+    color: var(--color-text);
+}
+
+.navbar.dark-nav:not(.scrolled) .nav-links a::after {
+    background: var(--color-text);
+}
+
+.navbar.dark-nav:not(.scrolled) .cart-count {
+    background: var(--color-primary);
+    color: white;
 }
 
 @media (max-width: 480px) {
