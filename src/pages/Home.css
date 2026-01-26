@@ -1,4 +1,5 @@
 .product-section {
+    scroll-margin-top: 100px;
     padding: var(--spacing-lg) var(--spacing-md);
     max-width: 1400px;
     margin: 0 auto;

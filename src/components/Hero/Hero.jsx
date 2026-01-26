@@ -77,7 +77,12 @@ const Hero = () => {
                         ))}
                     </div>
 
-                    <button className="mobile-shop-btn">
+                    <button className="mobile-shop-btn" onClick={() => {
+                        const productSection = document.querySelector('.product-section');
+                        if (productSection) {
+                            productSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }}>
                         Shop Now
                     </button>
                 </div>
