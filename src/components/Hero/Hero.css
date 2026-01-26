@@ -163,10 +163,11 @@
 
     .hero-background,
     .hero-content {
-        top: 1.5rem;
-        left: 1.5rem;
-        right: 1.5rem;
-        bottom: 1.5rem;
+        top: 4rem;
+        left: 0.5rem;
+        right: 0.5rem;
+        bottom: 0.5rem;
+        border-radius: 1rem;
     }
 
     .hero-content {
@@ -230,9 +231,10 @@
         /* Align content to bottom */
         align-items: stretch;
         background: linear-gradient(to bottom,
-                rgba(0, 0, 0, 0.1) 0%,
+                /* transparent 1%, */
+                rgba(0, 0, 0, 0) 1%,
                 transparent 30%,
-                rgba(0, 0, 0, 0.4) 70%,
+                rgb(0, 0, 0) 60%,
                 rgba(0, 0, 0, 0.8) 100%);
     }
 
