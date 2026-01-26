@@ -22,7 +22,7 @@ const Hero = () => {
     // Large cards for mobile
     const featureCards = [
         {
-            title: 'lalal',
+            title: 'Earings',
             icon: <Gem size={20} />,
             desc: 'Delicate chains and statement pendants for a refined style',
             link: '#'
@@ -94,8 +94,13 @@ const Hero = () => {
                     {/* Only showing a subset for desktop to keep it clean if needed, or use original list */}
                     {[...pillCategories, ...featureCards].map((cat, index) => (
                         <motion.div key={index} className="hero-category-item" variants={fadeInUp}>
-                            <h3>{cat.title}</h3>
-                            <p>{cat.desc || 'Explore our exclusive collection'}</p>
+                            <div className="hero-card-icon">
+                                {cat.icon}
+                            </div>
+                            <div className="hero-card-content">
+                                <h3>{cat.title}</h3>
+                                <p>{cat.desc || 'Explore our exclusive collection'}</p>
+                            </div>
                         </motion.div>
                     ))}
                 </motion.div>
