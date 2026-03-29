@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, User, Diamond, Gem, Layers } from 'lucide-react'; // Added icons
 import './Hero.css';
+import BlurText from '../Common/BlurText/BlurText';
 
 import heroImage from '../../assets/images/HeroPageAsset1.png';
 import heroImageMobile from '../../assets/images/HeroPageAsset1Mobile.png';
@@ -12,6 +13,17 @@ const Hero = () => {
         visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
     };
 
+    // Parallax effect for desktop
+    const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
+    const handleMouseMove = (e) => {
+        if (window.innerWidth > 1024) {
+            const { clientX, clientY } = e;
+            const moveX = (clientX - window.innerWidth / 2) / 50;
+            const moveY = (clientY - window.innerHeight / 2) / 50;
+            setMousePos({ x: moveX, y: moveY });
+        }
+    };
+
     // Top pills for mobile
     const pillCategories = [
         { title: 'New In', icon: <Sparkles size={14} />, link: '#' },
@@ -19,10 +31,10 @@ const Hero = () => {
         { title: 'Rings', icon: <Diamond size={14} />, link: '#' },
     ];
 
-    // Large cards for mobile
+    // Large cards for desktop/mobile
     const featureCards = [
         {
-            title: 'Earings',
+            title: 'Necklaces',
             icon: <Gem size={20} />,
             desc: 'Delicate chains and statement pendants for a refined style',
             link: '#'
@@ -36,12 +48,22 @@ const Hero = () => {
     ];
 
     return (
-        <section className="hero">
+        <section className="hero" onMouseMove={handleMouseMove}>
             <div className="hero-background">
                 <motion.div
                     initial={{ opacity: 0, scale: 1.1 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    animate={{ 
+                        opacity: 1, 
+                        scale: 1,
+                        x: mousePos.x,
+                        y: mousePos.y
+                    }}
+                    transition={{ 
+                        duration: 1.5, 
+                        ease: "easeOut",
+                        x: { type: "spring", stiffness: 50, damping: 20 },
+                        y: { type: "spring", stiffness: 50, damping: 20 }
+                    }}
                     className="hero-image-wrapper"
                 >
                     <picture>
@@ -55,14 +77,35 @@ const Hero = () => {
 
             <div className="hero-content">
                 {/* Desktop Title */}
-                <motion.h1 
-                    className="hero-brand-title desktop-only"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                >
-                    Aliska Stones
-                </motion.h1>
+                <div className="hero-brand-container desktop-only">
+                    <BlurText
+                        text="Aliska Stones"
+                        delay={150}
+                        animateBy="words"
+                        direction="top"
+                        className="hero-brand-title"
+                    />
+                    <motion.p 
+                        className="hero-brand-subtitle"
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.8 }}
+                    >
+                        Handcrafted elegance inspired by nature — sculpted in recycled gold, silver &amp; natural gemstones.
+                    </motion.p>
+
+                    <motion.div 
+                        className="hero-cta-group"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 1.1 }}
+                    >
+                        <a href="/shop" className="hero-cta-btn">
+                            Shop Collection <ArrowRight size={18} />
+                        </a>
+                        <a href="/about" className="hero-cta-link">Our Story</a>
+                    </motion.div>
+                </div>
 
                 {/* Mobile Title Layout */}
                 <motion.div 
@@ -117,27 +160,46 @@ const Hero = () => {
                     </motion.button>
                 </motion.div>
 
-                {/* Legacy Desktop Categories */}
+                {/* Desktop Categories — Bottom Right */}
                 <motion.div
                     className="hero-categories desktop-only"
-                    initial="hidden"
-                    animate="visible"
-                    variants={{
-                        visible: { transition: { staggerChildren: 0.1 } }
-                    }}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 1.2, staggerChildren: 0.08 }}
                 >
-                    {/* Only showing a subset for desktop to keep it clean if needed, or use original list */}
                     {[...pillCategories, ...featureCards].map((cat, index) => (
-                        <motion.div key={index} className="hero-category-item" variants={fadeInUp}>
+                        <div key={index} className="hero-category-item">
                             <div className="hero-card-icon">
                                 {cat.icon}
                             </div>
                             <div className="hero-card-content">
                                 <h3>{cat.title}</h3>
-                                <p>{cat.desc || 'Explore our exclusive collection'}</p>
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
+                </motion.div>
+
+                {/* Desktop Trust Badges — Bottom Left */}
+                <motion.div 
+                    className="hero-trust-badges desktop-only"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 1.6 }}
+                >
+                    <div className="trust-badge">
+                        <Sparkles size={14} />
+                        <span>Handcrafted</span>
+                    </div>
+                    <div className="trust-divider"></div>
+                    <div className="trust-badge">
+                        <Gem size={14} />
+                        <span>Natural Gemstones</span>
+                    </div>
+                    <div className="trust-divider"></div>
+                    <div className="trust-badge">
+                        <Layers size={14} />
+                        <span>Recycled Gold</span>
+                    </div>
                 </motion.div>
             </div>
         </section>
