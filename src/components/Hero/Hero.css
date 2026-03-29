@@ -25,6 +25,13 @@
     /* Sharp corners like reference */
 }
 
+.hero-image-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
 .hero-image {
     width: 100%;
     height: 100%;
@@ -32,6 +39,21 @@
     object-position: right center;
     background-color: #bbb6aa;
     /* match image bg */
+}
+
+.hero-overlay-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(197, 160, 89, 0.1) 0%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
 }
 
 .hero-content {

@@ -38,34 +38,60 @@ const Hero = () => {
     return (
         <section className="hero">
             <div className="hero-background">
-                <picture>
-                    <source media="(max-width: 768px)" srcSet={heroImageMobile} />
-                    <source media="(min-width: 769px)" srcSet={heroImage} />
-                    <img src={heroImage} alt="Aliska Stones Jewelry Collection" className="hero-image" />
-                </picture>
+                <motion.div
+                    initial={{ opacity: 0, scale: 1.1 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    className="hero-image-wrapper"
+                >
+                    <picture>
+                        <source media="(max-width: 768px)" srcSet={heroImageMobile} />
+                        <source media="(min-width: 769px)" srcSet={heroImage} />
+                        <img src={heroImage} alt="Aliska Stones Jewelry Collection" className="hero-image" />
+                    </picture>
+                </motion.div>
+                <div className="hero-overlay-gradient"></div>
             </div>
 
             <div className="hero-content">
                 {/* Desktop Title */}
-                <h1 className="hero-brand-title desktop-only">Aliska Stones</h1>
+                <motion.h1 
+                    className="hero-brand-title desktop-only"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                >
+                    Aliska Stones
+                </motion.h1>
 
                 {/* Mobile Title Layout */}
-                <div className="hero-mobile-layout mobile-only">
-                    <div className="mobile-title">
+                <motion.div 
+                    className="hero-mobile-layout mobile-only"
+                    initial="hidden"
+                    animate="visible"
+                    variants={{
+                        hidden: { opacity: 0 },
+                        visible: { 
+                            opacity: 1,
+                            transition: { staggerChildren: 0.2, delayChildren: 0.3 }
+                        }
+                    }}
+                >
+                    <motion.div className="mobile-title" variants={fadeInUp}>
                         <span>Aliska</span>
                         <span>Stones</span>
-                    </div>
-
-                    <div className="mobile-pills">
+                    </motion.div>
+ 
+                    <motion.div className="mobile-pills" variants={fadeInUp}>
                         {pillCategories.map((cat, index) => (
                             <div key={index} className="mobile-pill">
                                 {cat.icon}
                                 <span>{cat.title}</span>
                             </div>
                         ))}
-                    </div>
-
-                    <div className="mobile-feature-cards">
+                    </motion.div>
+ 
+                    <motion.div className="mobile-feature-cards" variants={fadeInUp}>
                         {featureCards.map((card, index) => (
                             <div key={index} className="mobile-feature-card">
                                 <div className="card-header">
@@ -75,17 +101,21 @@ const Hero = () => {
                                 <p>{card.desc}</p>
                             </div>
                         ))}
-                    </div>
-
-                    <button className="mobile-shop-btn" onClick={() => {
-                        const productSection = document.querySelector('.product-section');
-                        if (productSection) {
-                            productSection.scrollIntoView({ behavior: 'smooth' });
-                        }
-                    }}>
+                    </motion.div>
+ 
+                    <motion.button 
+                        className="mobile-shop-btn" 
+                        variants={fadeInUp}
+                        onClick={() => {
+                            const productSection = document.querySelector('.product-section');
+                            if (productSection) {
+                                productSection.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }}
+                    >
                         Shop Now
-                    </button>
-                </div>
+                    </motion.button>
+                </motion.div>
 
                 {/* Legacy Desktop Categories */}
                 <motion.div
