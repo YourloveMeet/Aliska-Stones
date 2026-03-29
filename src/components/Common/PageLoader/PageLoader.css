@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #0c1a1a; /* Matching a deep forest green/dark theme */
+  background-color: #0c1a1a; /* Matching deep forest green theme */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,18 +24,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #F9E4B7; /* Champagne text */
   user-select: none;
-  gap: 20px;
+  gap: 40px; /* More gap for larger elements */
 }
 
 .loader {
-  width: 40px;
-  height: 40px;
+  width: 100px; /* Significantly bigger sphere */
+  height: 100px;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   background-color: transparent;
-  animation: loader-rotate 1.5s linear infinite;
+  animation: loader-rotate 1.8s linear infinite; /* Slightly specialized timing */
   z-index: 0;
 }
 
@@ -44,41 +44,42 @@
     transform: rotate(90deg);
     box-shadow:
       0 1px 1px 0 #fff inset,
-      0 3px 5px 0 #ff5f9f inset,
-      0 4px 4px 0 #0693ff inset;
+      0 3px 8px 0 #D4AF37 inset, /* Deep gold */
+      0 4px 6px 0 #F9E4B7 inset; /* Light champagne */
   }
   50% {
     transform: rotate(270deg);
-    background: #7c0911;
+    background: #1a332a; /* Soft forest green base */
     box-shadow:
       0 1px 1px 0 #fff inset,
-      0 3px 5px 0 #d60a47 inset,
-      0 4px 4px 0 #fbef19 inset;
+      0 3px 10px 0 #C5A059 inset, /* Muted gold */
+      0 4px 6px 0 #F9E4B7 inset;
   }
   100% {
     transform: rotate(450deg);
     box-shadow:
       0 1px 1px 0 #fff inset,
-      0 3px 5px 0 #ff5f9f inset,
-      0 4px 4px 0 #28a9ff inset;
+      0 3px 8px 0 #D4AF37 inset,
+      0 4px 6px 0 #F9E4B7 inset;
   }
 }
 
 .letter-wrapper {
   display: flex;
-  gap: 2px;
+  gap: 4px;
 }
 
 .loader-letter {
   display: inline-block;
   opacity: 0.4;
   transform: translateY(0);
-  animation: loader-letter-anim 2s infinite;
+  animation: loader-letter-anim 2.5s infinite;
   z-index: 1;
   font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
-  letter-spacing: 0.1em;
+  font-size: 2.5rem; /* Bigger text */
+  letter-spacing: 0.15em;
   text-transform: uppercase;
+  font-weight: 500;
 }
 
 .loader-letter:nth-child(1) { animation-delay: 0s; }
@@ -101,13 +102,16 @@
   0%, 100% {
     opacity: 0.4;
     transform: translateY(0);
+    color: #F9E4B7;
   }
   20% {
     opacity: 1;
-    transform: scale(1.15);
+    transform: scale(1.1) translateY(-5px);
+    color: #fff; /* Shine effect */
   }
   40% {
     opacity: 0.7;
     transform: translateY(0);
+    color: #D4AF37; /* Fade to gold */
   }
 }
