@@ -18,30 +18,57 @@ const NotFound = React.lazy(() => import('../pages/NotFound'));
 import CartDrawer from '../components/Cart/CartDrawer';
 import ScrollToTop from '../components/ScrollToTop/ScrollToTop';
 import PageLoader from '../components/Common/PageLoader/PageLoader';
-import { waitForImages } from '../utils/imageLoader';
+import { waitForImages, preloadImages } from '../utils/imageLoader';
+
+// Critical assets for preloading
+import heroImage from '../assets/images/HeroPageAsset1.png';
+import heroImageMobile from '../assets/images/HeroPageAsset1Mobile.png';
+import classicImage from '../assets/images/Products/Classic Collection.png';
+import { productImages } from '../data/products';
 
 
 const AppContent = () => {
   const [isPageLoading, setIsPageLoading] = React.useState(true);
+  const [loadingProgress, setLoadingProgress] = React.useState(0);
   const location = useLocation();
   const isFirstMount = React.useRef(true);
 
   // Initial load
   React.useEffect(() => {
     const handleInitialLoad = async () => {
-      // In JS-heavy apps, wait for the window to report fully loaded
+      setLoadingProgress(10); // Start at 10%
+
+      // 1. Preload critical images first
+      const criticalImages = [
+        heroImage, 
+        heroImageMobile, 
+        classicImage,
+        ...productImages.slice(0, 3) // First 3 product images
+      ];
+      
+      await preloadImages(criticalImages, (progress) => {
+        // Map 0-100 to 10-85 range for preloading phase
+        setLoadingProgress(10 + (progress * 0.75));
+      });
+
+      // 2. Wait for the window to report fully loaded (scripts, fonts, etc)
       if (document.readyState !== 'complete') {
         await new Promise(resolve => window.addEventListener('load', resolve, { once: true }));
       }
+      setLoadingProgress(80);
       
-      // Additional check for all images to ensure the UI is visually ready
+      // 3. Additional check for all images currently in DOM (from lazy pages)
       await waitForImages();
+      setLoadingProgress(95);
       
-      // Small buffer to let animations settle
+      // 4. Final step
       setTimeout(() => {
-        setIsPageLoading(false);
-        isFirstMount.current = false;
-      }, 500);
+        setLoadingProgress(100);
+        setTimeout(() => {
+          setIsPageLoading(false);
+          isFirstMount.current = false;
+        }, 400);
+      }, 400);
     };
 
     handleInitialLoad();
@@ -53,17 +80,28 @@ const AppContent = () => {
 
     const handleRouteChange = async () => {
       setIsPageLoading(true);
+      setLoadingProgress(20);
       
       // Wait for React to mount the new component and start loading its assets
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise(resolve => setTimeout(resolve, 150));
       
-      // Now wait specifically for newly added images in the DOM
-      await waitForImages();
+      // Get all new images and wait for them, showing some artificial progress
+      const images = Array.from(document.querySelectorAll('img')).map(img => img.src);
+      if (images.length > 0) {
+        await preloadImages(images, (progress) => {
+          setLoadingProgress(20 + (progress * 0.75));
+        });
+      } else {
+        setLoadingProgress(90);
+      }
       
       // Short delay for a polished feel
       setTimeout(() => {
-        setIsPageLoading(false);
-      }, 800);
+        setLoadingProgress(100);
+        setTimeout(() => {
+          setIsPageLoading(false);
+        }, 300);
+      }, 500);
     };
 
     handleRouteChange();
@@ -71,10 +109,10 @@ const AppContent = () => {
 
   return (
     <>
-      <PageLoader isVisible={isPageLoading} />
+      <PageLoader isVisible={isPageLoading} progress={loadingProgress} />
       <ScrollToTop />
       <CartDrawer />
-      <React.Suspense fallback={<PageLoader isVisible={true} />}>
+      <React.Suspense fallback={<PageLoader isVisible={true} progress={70} />}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
