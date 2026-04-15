@@ -7,40 +7,34 @@ const PageLoader = ({ isVisible, progress = 0 }) => {
 
   return (
     <div className={`loader-overlay ${!isVisible ? 'hidden' : ''}`}>
-      <div className="loader-content-wrapper">
-        <div className="loader-visual">
-          <div className="loader-ring"></div>
-          <div className="loader-progress-text">{Math.round(progress)}%</div>
+      <div className="loader-wrapper">
+        <div className="loader"></div>
+        <div className="letter-wrapper">
+          {letters.map((letter, index) => (
+            <span 
+              key={index} 
+              className="loader-letter"
+              style={{ '--index': index }}
+            >
+              {letter === " " ? "\u00A0" : letter}
+            </span>
+          ))}
         </div>
         
-        <div className="brand-loader">
-          <div className="letter-wrapper">
-            {letters.map((letter, index) => (
-              <span 
-                key={index} 
-                className="loader-letter"
-                style={{ '--index': index }}
-              >
-                {letter === " " ? "\u00A0" : letter}
-              </span>
-            ))}
-          </div>
-          
-          <div className="progress-bar-container">
+        <div className="progress-container">
+          <div className="progress-bar-wrapper">
             <div 
               className="progress-bar-fill" 
               style={{ width: `${progress}%` }}
             ></div>
           </div>
-          
-          <p className="loading-status">
-            Curating timeless elegance...
-          </p>
+          <span className="progress-text">{Math.round(progress)}%</span>
         </div>
+        
+        <p className="loading-status">
+          Curating timeless elegance...
+        </p>
       </div>
-      
-      {/* Decorative background elements */}
-      <div className="loader-bg-accent"></div>
     </div>
   );
 };
